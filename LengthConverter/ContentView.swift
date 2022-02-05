@@ -52,6 +52,7 @@ struct ContentView: View {
                     Text("Output Value")
                 }
             }
+            .navigationTitle("Length Converter")
         }
     }
 }
