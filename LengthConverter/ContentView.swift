@@ -10,8 +10,79 @@ import SwiftUI
 struct ContentView: View {
     @State private var inputUnit = "meters"
     @State private var outputUnit = "feet"
-    @State private var inputValue = 0
-    var outputValue = 0
+    @State private var inputValue = 0.0
+    @FocusState private var inputValueIsFocused: Bool
+    
+    var outputValue: Double {
+        if(inputUnit == "meters") {
+            switch outputUnit {
+            case "km":
+                return inputValue / 1000
+            case "feet":
+                return inputValue * 3.281
+            case "yards":
+                return inputValue * 1.094
+            case "miles":
+                return inputValue / 1609
+            default:
+                return inputValue
+            }
+        } else if(inputUnit == "km") {
+            switch outputUnit {
+            case "meters":
+                return inputValue * 1000
+            case "feet":
+                return inputValue * 3281
+            case "yards":
+                return inputValue * 1094
+            case "miles":
+                return inputValue * 1.609
+            default:
+                return inputValue
+            }
+        } else if (inputUnit == "feet") {
+            switch outputUnit {
+            case "meters":
+                return inputValue / 3.281
+            case "km":
+                return inputValue / 3281
+            case "yards":
+                return inputValue / 3
+            case "miles":
+                return inputValue / 5280
+            default:
+                return inputValue
+            }
+        } else if (inputUnit == "yards") {
+            switch outputUnit {
+            case "meters":
+                return inputValue / 1.094
+            case "km":
+                return inputValue / 1094
+            case "feet":
+                return inputValue * 3
+            case "miles":
+                return inputValue / 3
+            default:
+                return inputValue
+            }
+        } else if (inputUnit == "miles") {
+            switch outputUnit {
+            case "meters":
+                return inputValue * 1609
+            case "km":
+                return inputValue * 1.609
+            case "feet":
+                return inputValue / 5280
+            case "yards":
+                return inputValue / 1760
+            default:
+                return inputValue
+            }
+        }
+         
+        return inputValue
+    }
 
     let lengthOptions = ["meters", "km", "feet", "yards", "miles"]
     
@@ -42,6 +113,8 @@ struct ContentView: View {
                 
                 Section {
                     TextField("Input Value", value: $inputValue, format: .number)
+                        .keyboardType(.numberPad)
+                        .focused($inputValueIsFocused)
                 } header: {
                     Text("Input Value")
                 }
