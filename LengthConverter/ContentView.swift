@@ -83,7 +83,7 @@ struct ContentView: View {
          
         return inputValue
     }
-
+    
     let lengthOptions = ["meters", "km", "feet", "yards", "miles"]
     
     var body: some View {
@@ -120,7 +120,7 @@ struct ContentView: View {
                 }
                 
                 Section {
-                    Text(outputValue, format: .number)
+                    Text(outputValue.formatted())
                 } header: {
                     Text("Output Value")
                 }
