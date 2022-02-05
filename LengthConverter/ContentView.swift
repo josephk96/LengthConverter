@@ -128,6 +128,8 @@ struct ContentView: View {
             .navigationTitle("Length Converter")
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    
                     Button("Done") {
                         inputValueIsFocused = false
                     }
