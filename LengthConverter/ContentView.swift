@@ -14,74 +14,35 @@ struct ContentView: View {
     @FocusState private var inputValueIsFocused: Bool
     
     var outputValue: Double {
-        if(inputUnit == "meters") {
-            switch outputUnit {
-            case "km":
-                return inputValue / 1000
-            case "feet":
-                return inputValue * 3.281
-            case "yards":
-                return inputValue * 1.094
-            case "miles":
-                return inputValue / 1609
-            default:
-                return inputValue
-            }
-        } else if(inputUnit == "km") {
-            switch outputUnit {
-            case "meters":
-                return inputValue * 1000
-            case "feet":
-                return inputValue * 3281
-            case "yards":
-                return inputValue * 1094
-            case "miles":
-                return inputValue / 1.609
-            default:
-                return inputValue
-            }
-        } else if (inputUnit == "feet") {
-            switch outputUnit {
-            case "meters":
-                return inputValue / 3.281
-            case "km":
-                return inputValue / 3281
-            case "yards":
-                return inputValue / 3
-            case "miles":
-                return inputValue / 5280
-            default:
-                return inputValue
-            }
-        } else if (inputUnit == "yards") {
-            switch outputUnit {
-            case "meters":
-                return inputValue / 1.094
-            case "km":
-                return inputValue / 1094
-            case "feet":
-                return inputValue * 3
-            case "miles":
-                return inputValue / 1760
-            default:
-                return inputValue
-            }
-        } else if (inputUnit == "miles") {
-            switch outputUnit {
-            case "meters":
-                return inputValue * 1609
-            case "km":
-                return inputValue * 1.609
-            case "feet":
-                return inputValue * 5280
-            case "yards":
-                return inputValue * 1760
-            default:
-                return inputValue
-            }
+        switch inputUnit {
+        case "meters":
+            return convertMetersToOutputUnit(inputValue)
+        case "km":
+            return convertMetersToOutputUnit(inputValue * 1000)
+        case "feet":
+            return convertMetersToOutputUnit(inputValue / 3.281)
+        case "yards":
+            return convertMetersToOutputUnit(inputValue / 1.094)
+        case "miles":
+            return convertMetersToOutputUnit(inputValue * 1609)
+        default:
+            return inputValue
         }
-         
-        return inputValue
+    }
+    
+    func convertMetersToOutputUnit(_ meters: Double) -> Double {
+        switch outputUnit {
+        case "km":
+            return meters / 1000
+        case "feet":
+            return meters * 3.281
+        case "yards":
+            return meters * 1.094
+        case "miles":
+            return meters / 1609
+        default:
+            return meters
+        }
     }
     
     let lengthOptions = ["meters", "km", "feet", "yards", "miles"]
