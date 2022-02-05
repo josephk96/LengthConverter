@@ -25,6 +25,8 @@ struct ContentView: View {
                         }
                     }
                     .pickerStyle(.segmented)
+                } header: {
+                    Text("Input Unit")
                 }
 
                 Section {
@@ -34,6 +36,8 @@ struct ContentView: View {
                         }
                     }
                     .pickerStyle(.segmented)
+                } header: {
+                    Text("Output Unit")
                 }
                 
                 Section {
