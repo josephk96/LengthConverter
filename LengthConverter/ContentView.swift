@@ -36,7 +36,7 @@ struct ContentView: View {
             case "yards":
                 return inputValue * 1094
             case "miles":
-                return inputValue * 1.609
+                return inputValue / 1.609
             default:
                 return inputValue
             }
@@ -62,7 +62,7 @@ struct ContentView: View {
             case "feet":
                 return inputValue * 3
             case "miles":
-                return inputValue / 3
+                return inputValue / 1760
             default:
                 return inputValue
             }
@@ -73,9 +73,9 @@ struct ContentView: View {
             case "km":
                 return inputValue * 1.609
             case "feet":
-                return inputValue / 5280
+                return inputValue * 5280
             case "yards":
-                return inputValue / 1760
+                return inputValue * 1760
             default:
                 return inputValue
             }
