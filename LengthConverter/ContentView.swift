@@ -126,6 +126,13 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Length Converter")
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Button("Done") {
+                        inputValueIsFocused = false
+                    }
+                }
+            }
         }
     }
 }
